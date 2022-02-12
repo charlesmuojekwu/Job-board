@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ListingController;
+use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ListingController::class, 'index'])->name('listings.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
