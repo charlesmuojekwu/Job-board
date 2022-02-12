@@ -11,6 +11,12 @@ class Listing extends Model
 
     protected $guarded = [];
 
+    # model binding use slud instead of default Id
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 
     public function clicks()
     {

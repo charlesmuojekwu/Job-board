@@ -16,10 +16,11 @@ class ListingFactory extends Factory
     {
         $title = $this->faker->sentence(rand(5, 7));
         $datetime = $this->faker->dateTimeBetween('-1 month', 'now');
+
         $content = '';
         for($i = 0; $i < 5; $i++)
         {
-            $content = '<p class="mb-4">' . $this->faker->sentences(rand(5, 10), true) . '</p>';
+            $content .= '<p class="mb-4">' . $this->faker->sentences(rand(5, 10), true) . '</p>';
         }
 
 
@@ -31,7 +32,7 @@ class ListingFactory extends Factory
             'logo' => basename($this->faker->image(storage_path('app/public'))),
             'is_highlighted' => (rand(1, 9) > 7),
             'is_active' => true,
-            'content' => '',
+            'content' => $content,
             'apply_link' => $this->faker->url,
             'created_at' => $datetime,
             'updated_at' => $datetime
