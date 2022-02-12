@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ListingController;
 use App\Models\Listing;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,10 @@ Route::get('/new', [ListingController::class, 'create'])->name('listings.create'
 Route::post('/new', [ListingController::class, 'store'])->name('listings.store');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard', function (Request $request) {
+    return view('dashboard',[
+        'listings' => $request->user()->listings
+    ]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
